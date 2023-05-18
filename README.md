@@ -51,6 +51,98 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
 5. **Interact with the database**
 
     Update your `Program.cs` file to include a connection to the SQL Server database and provide functionality to the ToDo App. This might include displaying a list of tasks, adding new tasks, marking tasks as complete, and deleting tasks.
+    
+    ```csharp
+    using System;
+    using System.Collections.Generic;
+    using System.Data.SqlClient;
+
+    public class Program
+    {
+        private static string _connectionString = "Server=localhost;Database=ToDoDb;User Id=sa;Password=P@ssw0rd;";
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Console.WriteLine("1. Show all ToDo items");
+                Console.WriteLine("2. Add a new ToDo item");
+                Console.WriteLine("3. Exit");
+                Console.WriteLine("Choose an option:");
+
+                var option = Console.ReadLine();
+                switch (option)
+                {
+                    case "1":
+                        ShowToDoItems();
+                        break;
+                    case "2":
+                        AddToDoItem();
+                        break;
+                    case "3":
+                        return;
+                    default:
+                        Console.WriteLine("Invalid option, please try again");
+                        break;
+                }
+            }
+        }
+
+        static void ShowToDoItems()
+        {
+            var toDoItems = new List<ToDoItem>();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("SELECT * FROM ToDo", connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var toDoItem = new ToDoItem
+                        {
+                            Id = reader.GetInt32(0),
+                            Task = reader.GetString(1),
+                            IsComplete = reader.GetBoolean(2)
+                        };
+
+                        toDoItems.Add(toDoItem);
+                    }
+                }
+            }
+
+            foreach (var item in toDoItems)
+            {
+                Console.WriteLine($"Id: {item.Id}, Task: {item.Task}, IsComplete: {item.IsComplete}");
+            }
+        }
+
+        static void AddToDoItem()
+        {
+            Console.WriteLine("Enter the task:");
+            var task = Console.ReadLine();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("INSERT INTO ToDo (Task, IsComplete) VALUES (@Task, 0)", connection))
+                {
+                    command.Parameters.AddWithValue("@Task", task);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            Console.WriteLine("ToDo item added successfully");
+        }
+    }
+
+    public class ToDoItem
+    {
+        public int Id { get; set; }
+        public string Task { get; set; }
+        public bool IsComplete { get; set; }
+    }
+
+    ```
 
 6. **Run the App**
 
