@@ -43,14 +43,44 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
 4. **Create the ToDo App**
 
     Use Visual Studio Code to create a new console application:
+    In this part of the workshop, you will create your application using Visual Studio Code's Terminal in GitHub Codespaces. Follow these steps:
 
-    - Right-click on the Explorer panel, then select New File.
-    - Name the file `Program.cs`.
-    - Write the C# code for the console app in `Program.cs`.
+    4.1. **Creating a new .NET Core Console Application**
+
+    In this part of the workshop, you will create your application using Visual Studio Code's Terminal in GitHub Codespaces. Follow these steps:
+
+    - Open the Terminal by navigating to the top menu and selecting `Terminal -> New Terminal`. Alternatively, you can use the shortcut `Ctrl + backtick (`).
+    - In the Terminal, type the command `dotnet new console -n TodoApp` to create a new .NET Core console application in a new folder called "TodoApp".
+
+    After running the command, you should see a new "TodoApp" folder in the Explorer pane on the left-hand side of the Visual Studio Code window.
+
+    4.2. **Familiarize Yourself with the Project Structure**
+
+    Next, you will familiarize yourself with the new console application's structure. 
+
+    - Click on the newly created "TodoApp" folder in the Explorer pane. You'll see two files: `Program.cs` and `TodoApp.csproj`.
+    - The `Program.cs` file is the starting point of your application. It includes a `Main` method which acts as the entry point of the application.
+    - The `TodoApp.csproj` file is your project file. It contains information about the project and its dependencies.
+
+    4.3. **Run the Console Application**
+
+    After familiarizing yourself with the project structure, it's time to run the console application.
+
+    - First, navigate into the new project directory in the Terminal by typing `cd TodoApp` and pressing `Enter`.
+    - Once you're in the "TodoApp" directory (you can verify this by looking at the current path in the Terminal), type `dotnet run` and press `Enter` to run the application.
+
+    The application will compile and execute. If everything is set up correctly, you should see the string "Hello, World!" printed in the Terminal.
+
+    Now, to verify that you can make changes and see them reflected in the application:
+
+    - Modify the "Hello World!" message in the `Program.cs` file.
+    - Repeat the `dotnet run` command to see your changes.
+
+    After these steps, you're ready to move on to developing your ToDo app.
 
 5. **Interact with the database**
 
-    Update your `Program.cs` file to include a connection to the SQL Server database and provide functionality to the ToDo App. This might include displaying a list of tasks, adding new tasks, marking tasks as complete, and deleting tasks.
+Update your `Program.cs` file to include a connection to the SQL Server database and provide functionality to the ToDo App. This might include displaying a list of tasks, adding new tasks, marking tasks as complete, and deleting tasks.
     
     ```csharp
     using System;
