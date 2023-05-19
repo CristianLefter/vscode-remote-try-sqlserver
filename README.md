@@ -26,11 +26,7 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
     Run the following SQL script in the terminal to create the ToDo table:
 
     ```sql
-    CREATE TABLE ToDo (
-        Id INT IDENTITY(1,1) PRIMARY KEY,
-        Task VARCHAR(50),
-        IsComplete BIT
-    )
+    CREATE TABLE ToDo (Id INT IDENTITY(1,1) PRIMARY KEY, Task VARCHAR(50), IsComplete BIT);
     ```
 
 3. **Explore the database with the SQL Server extension**
