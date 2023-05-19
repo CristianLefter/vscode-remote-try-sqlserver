@@ -217,6 +217,11 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
     
 6. **Run the App**
 
+    Before running the app, use in Terminal:
+    ```
+    dotnet add package Microsoft.Data.SqlClient
+    ```
+
     Run the app using the Terminal in Visual Studio Code by typing `dotnet run`.
 
 ## Contributing
