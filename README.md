@@ -201,7 +201,20 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
     }
 
     ```
+    What happens in the previous code? Let's see some of the methods that make it:
+    
+    | Method                      | Explanation                                                                                                   |
+    |-----------------------------|---------------------------------------------------------------------------------------------------------------|
+    | `Main()`                    | The entry point of the program. It displays a menu and waits for the user to input a number.                  |
+    | `ShowToDoItems()`           | This method fetches all To Do items from the database and displays them.                                      |
+    | `AddToDoItem()`             | This method adds a new To Do item to the database.                                                            |
+    | `ExecuteNonQuery()`         | This method in ADO.NET is used to execute statements, like INSERT, DELETE, UPDATE, and SET, which don't return any records. |
+    | `Parameters.AddWithValue()` | This method adds a value to the end of the `SqlParameterCollection`. It's typically used to insert, update, or filter data in the database. |
+    | `SqlConnection()`           | This method initiates a new connection to a database. The database is specified by the connection string passed as a parameter. |
+    | `connection.Open()`         | This method opens a database connection with the property settings specified by the `SqlConnection.ConnectionString`. |
+    | `ExecuteReader()`           | This method in ADO.NET is used to execute statements that return a result set, like SELECT. It returns a `SqlDataReader` that can be used to read the returned rows. |
 
+    
 6. **Run the App**
 
     Run the app using the Terminal in Visual Studio Code by typing `dotnet run`.
