@@ -83,7 +83,7 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
     Update your `Program.cs` file to include a connection to the SQL Server database and provide functionality to the ToDo App. This might include displaying a list of tasks, adding new tasks, marking tasks as complete, and deleting tasks.
 
     ```csharp
-
+    // Import necessary libraries
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
@@ -92,17 +92,22 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
 
     public class Program
     {
+        // Database connection string
         private static string _connectionString = "Server=localhost;Database=ToDoDb;User Id=sa;Password=P@ssw0rd;TrustServerCertificate=true";
         static void Main(string[] args)
         {
             while (true)
             {
+                // Show the menu to the user
                 Console.WriteLine("1. Show all ToDo items");
                 Console.WriteLine("2. Add a new ToDo item");
                 Console.WriteLine("3. Exit");
                 Console.WriteLine("Choose an option:");
-
+                
+                // Read the user's choice
                 var option = Console.ReadLine();
+                
+                // Handle the user's choice
                 switch (option)
                 {
                     case "1":
@@ -120,15 +125,23 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
             }
         }
 
+        // Function to show all To Do items
         static void ShowToDoItems()
         {
+            // List to store the To Do items
             var toDoItems = new List<ToDoItem>();
+            
+            // Connect to the database
             using (var connection = new SqlConnection(_connectionString))
             {
-                connection.Open();
+                connection.Open(); // Open the connection
+                
+                // Create and execute the SQL command to fetch all To Do items
                 using (var command = new SqlCommand("SELECT * FROM ToDo", connection))
                 using (var reader = command.ExecuteReader())
                 {
+                
+                    // Read the data and add it to the list
                     while (reader.Read())
                     {
                         var toDoItem = new ToDoItem
@@ -143,35 +156,51 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
                 }
             }
 
+            // Print out all the To Do items
             foreach (var item in toDoItems)
             {
                 Console.WriteLine($"Id: {item.Id}, Task: {item.Task}, IsComplete: {item.IsComplete}");
             }
         }
-
+        
+        // Function to add a new To Do item
         static void AddToDoItem()
         {
+            // Ask the user for the task description
             Console.WriteLine("Enter the task:");
             var task = Console.ReadLine();
 
+            // Connect to the database
             using (var connection = new SqlConnection(_connectionString))
             {
-                connection.Open();
+                connection.Open(); // Open the connection
+                
+                // Create and execute the SQL command to insert the new task
                 using (var command = new SqlCommand("INSERT INTO ToDo (Task, IsComplete) VALUES (@Task, 0)", connection))
                 {
+                    // Add the task to the SQL command
                     command.Parameters.AddWithValue("@Task", task);
+                    
+                    // Execute the SQL command
                     command.ExecuteNonQuery();
                 }
             }
 
+            // Inform the user that the item was added
             Console.WriteLine("ToDo item added successfully");
         }
     }
 
+    // Data class for a To Do item
     public class ToDoItem
     {
+        // The ID of the To Do item        
         public int Id { get; set; }
+        
+        // The description of the To Do item
         public string Task { get; set; }
+        
+         // Whether the To Do item is complete or not
         public bool IsComplete { get; set; }
     }
 
