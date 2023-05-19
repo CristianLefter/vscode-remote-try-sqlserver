@@ -87,10 +87,12 @@ More details in the [GitHub documentation](https://docs.github.com/en/free-pro-t
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
+    using Microsoft.Data.SqlClient;
+
 
     public class Program
     {
-        private static string _connectionString = "Server=localhost;Database=ToDoDb;User Id=sa;Password=P@ssw0rd;";
+        private static string _connectionString = "Server=localhost;Database=ToDoDb;User Id=sa;Password=P@ssw0rd;TrustServerCertificate=true";
         static void Main(string[] args)
         {
             while (true)
