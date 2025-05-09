@@ -29,7 +29,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     restart: unless-stopped
     environment:
-      SA_PASSWORD: P@ssw0rd
+      SA_PASSWORD: P@$$w.rd123
       ACCEPT_EULA: Y
     # Add "forwardPorts": ["1433"] to **devcontainer.json** to forward MSSQL locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
