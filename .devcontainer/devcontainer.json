@@ -18,7 +18,7 @@
 						"database": "",
 						"authenticationType": "SqlLogin",
 						"user": "sa",
-						"password": "P@ssw0rd",
+						"password": "P@$$w.rd123",
 						"emptyPasswordInput": false,
 						"savePassword": false,
 						"profileName": "mssql-container"
@@ -29,7 +29,8 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-dotnettools.csharp",
-				"ms-mssql.mssql"
+				"ms-mssql.mssql",
+				"GitHub.copilot"
 			]
 		}
 	},
